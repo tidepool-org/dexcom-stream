@@ -18,6 +18,19 @@
     "parser",
     "stream"
   ],
+  "testling": {
+    "harness": "mocha",
+    "browsers": [
+      "ie/6..latest",
+      "chrome/20..latest",
+      "firefox/10..latest",
+      "safari/latest",
+      "opera/11.0..latest",
+      "iphone/6",
+      "ipad/6"
+    ],
+    "files": "test/*.js"
+  },
   "config": {
     "blanket": {
       "pattern": [
