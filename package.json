@@ -23,5 +23,17 @@
   "bugs": {
     "url": "https://github.com/tidepool-org/dexcom-stream/issues"
   },
-  "homepage": "https://github.com/tidepool-org/dexcom-stream"
+  "homepage": "https://github.com/tidepool-org/dexcom-stream",
+  "devDependencies": {
+    "should": "~3.1.2",
+    "mocha-lcov-reporter": "0.0.1",
+    "travis-cov": "~0.2.5",
+    "mocha": "~1.17.1",
+    "coveralls": "~2.7.0",
+    "blanket": "~1.1.6"
+  },
+  "dependencies": {
+    "event-stream": "~3.1.0",
+    "moment": "~2.5.1"
+  }
 }
