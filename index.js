@@ -152,15 +152,3 @@ var splitBGRecords = function(rawData){
 
 module.exports = dxcomParser;
 
-if (!module.parent) {
-  es.pipeline(
-      process.openStdin( )
-    , dxcomParser.sugars( )
-    , es.writeArray(function (err, data) {
-      console.log('records', data);
-      console.log('FOUND ', data.length, 'records');
-
-    })
-  );
-}
-

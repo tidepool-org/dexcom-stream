@@ -55,7 +55,7 @@ if (!module.parent) {
 ```
 
 ```bash
-cat examples/dexcom_sample_with_and_without_meter_calibration.csv | head | node index.js
+cat examples/dexcom_sample_with_and_without_meter_calibration.csv | head | node examples/example.js
 records [ { value: '156', type: 'cbg', time: '2012-12-20T02:28:46' },
   { value: '171', type: 'cbg', time: '2012-12-20T02:33:45' },
   { value: '162', type: 'cbg', time: '2012-12-20T02:38:45' },
@@ -67,3 +67,13 @@ records [ { value: '156', type: 'cbg', time: '2012-12-20T02:28:46' },
   { value: '188', type: 'cbg', time: '2012-12-20T03:08:45' } ]
 FOUND  9 records
 ```
+records [ { value: '156', type: 'cbg', time: '2012-12-20T02:28:46' },
+  { value: '171', type: 'cbg', time: '2012-12-20T02:33:45' },
+  { value: '162', type: 'cbg', time: '2012-12-20T02:38:45' },
+  { value: '167', type: 'cbg', time: '2012-12-20T02:43:45' },
+  { value: '163', type: 'cbg', time: '2012-12-20T02:48:45' },
+  { value: '177', type: 'cbg', time: '2012-12-20T02:53:45' },
+  { value: '184', type: 'cbg', time: '2012-12-20T02:58:45' },
+  { value: '187', type: 'cbg', time: '2012-12-20T03:03:45' },
+  { value: '188', type: 'cbg', time: '2012-12-20T03:08:45' } ]
+FOUND  9 records
