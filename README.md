@@ -1,14 +1,20 @@
-dxcom-parser
+dexcom-stream
 ===========
 
-Parser for Dexcom CGM
+Streaming parser for Dexcom CGM text exports.
 
-# Usage
+## Install 
+
+```bash
+$ npm install dexcom-stream
+```
+
+### Usage
 
 ```js
 var fs = require('fs'),
 	es = require('event-stream'),
-	dxcom = require('dxcom-parser'),
+	dxcom = require('dexcom-stream'),
   timeZone = 120;
 
 var stream = fs.createReadStream('./examples/dexcom_sample_with_and_without_meter_calibration.csv');
@@ -27,16 +33,32 @@ es.pipeline(stream, dxcom.sugars(timeZone)
 );
 ```
 
-```bash
-cat examples/dexcom_sample_with_and_without_meter_calibration.csv | head | node index.js
-{"cbg":"156","type":"cgm","time":"2012-12-20T18:28:55.000Z"}
-{"cbg":"171","type":"cgm","time":"2012-12-20T18:33:54.000Z"}
-{"cbg":"162","type":"cgm","time":"2012-12-20T18:38:54.000Z"}
-{"cbg":"167","type":"cgm","time":"2012-12-20T18:43:54.000Z"}
-{"cbg":"163","type":"cgm","time":"2012-12-20T18:48:54.000Z"}
-{"cbg":"177","type":"cgm","time":"2012-12-20T18:53:54.000Z"}
-{"cbg":"184","type":"cgm","time":"2012-12-20T18:58:54.000Z"}
-{"cbg":"187","type":"cgm","time":"2012-12-20T19:03:54.000Z"}
-{"cbg":"188","type":"cgm","time":"2012-12-20T19:08:54.000Z"}
+
+##### Example: print everything to stdout
+```javascript
+if (!module.parent) {
+  es.pipeline(
+      process.openStdin( )
+    , dxcomParser.sugars( )
+    , es.writeArray(function (err, data) {
+      console.log('records', data);
+      console.log('FOUND ', data.length, 'records');
+
+    })
+  );
+}
 ```
 
+```bash
+cat examples/dexcom_sample_with_and_without_meter_calibration.csv | head | node index.js
+records [ { value: '156', type: 'cbg', time: '2012-12-20T02:28:46' },
+  { value: '171', type: 'cbg', time: '2012-12-20T02:33:45' },
+  { value: '162', type: 'cbg', time: '2012-12-20T02:38:45' },
+  { value: '167', type: 'cbg', time: '2012-12-20T02:43:45' },
+  { value: '163', type: 'cbg', time: '2012-12-20T02:48:45' },
+  { value: '177', type: 'cbg', time: '2012-12-20T02:53:45' },
+  { value: '184', type: 'cbg', time: '2012-12-20T02:58:45' },
+  { value: '187', type: 'cbg', time: '2012-12-20T03:03:45' },
+  { value: '188', type: 'cbg', time: '2012-12-20T03:08:45' } ]
+FOUND  9 records
+```
