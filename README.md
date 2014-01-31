@@ -21,11 +21,10 @@ $ npm install dexcom-stream
 var fs = require('fs'),
 	es = require('event-stream'),
 	dxcom = require('dexcom-stream'),
-  timeZone = 120;
 
 var stream = fs.createReadStream('./examples/dexcom_sample_with_and_without_meter_calibration.csv');
 
-es.pipeline(stream, dxcom.sugars(timeZone)
+es.pipeline(stream, dxcom.sugars( )
   , es.map( function (data, cb) {
       // do something with each record
       console.log(data);
