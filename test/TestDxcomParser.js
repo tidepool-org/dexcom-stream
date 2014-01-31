@@ -1,5 +1,4 @@
 var should = require('should');
-var fs = require('fs');
 
 describe("the DxcomParser module", function() {
   it('should not crash require', function(done) {
@@ -93,29 +92,7 @@ describe("the DxcomParser module", function() {
       done();
     });
   });
-  describe('sugars',function(){
-    it('should emit two events', function(done) {
-      var DxcomParser, es, stream, bgTypeStream, toProcess, readings;
 
-      DxcomParser = require('../');
-      es = require('event-stream');
-      readings = [];
-
-      toProcess = fs.createReadStream('examples/dexcom_sample_with_meter_calibration.csv');
-
-      stream = toProcess.pipe(DxcomParser.sugars( ));
-
-      stream
-        .on( 'data', function(data) {
-            readings.push(data);
-          })
-        .on( 'end',  function(data) {
-            if (data) { readings.push(data); }
-            readings.length.should.be.equal(24); 
-            done( );
-        });
-    });
-  });
   describe('time',function(){
     it('should show year 2012, month Dec and day 20 for given raw time of 2012-12-20 04:18:45', function(done) {
       var DxcomParser, es, stream, bgTypeStream, toProcess;

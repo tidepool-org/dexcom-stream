@@ -29,7 +29,7 @@
       "iphone/6",
       "ipad/6"
     ],
-    "files": "test/*.js"
+    "files": "test/Test*.js"
   },
   "config": {
     "blanket": {
