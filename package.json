@@ -18,6 +18,16 @@
     "parser",
     "stream"
   ],
+  "config": {
+    "blanket": {
+      "pattern": [
+        "index"
+      ],
+      "data-cover-never": [
+        "node"
+      ]
+    }
+  },
   "author": "Tidepool contributors",
   "license": "BSD-2",
   "bugs": {
