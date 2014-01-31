@@ -14,7 +14,7 @@ $ npm install dexcom-stream
 [![Coverage Status](https://coveralls.io/repos/tidepool-org/dexcom-stream/badge.png)](https://coveralls.io/r/tidepool-org/dexcom-stream)
 
 
-[![browser support](https://ci.testling.com/tidepool-org/dexcom-stream.png)](https://ci.testling.com/tidepool-org/dexcom-stream)
+[![browser support](https://ci.testling.com/tidepool-org/dexcom-stream.png?bust=githubcache)](https://ci.testling.com/tidepool-org/dexcom-stream)
 
 
 ### Usage
