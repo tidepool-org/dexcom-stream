@@ -12,6 +12,9 @@ $ npm install dexcom-stream
 [![Build Status](https://travis-ci.org/tidepool-org/dexcom-stream.png?branch=master)](https://travis-ci.org/tidepool-org/dexcom-stream)
 [![Code Climate](https://codeclimate.com/github/tidepool-org/dexcom-stream.png)](https://codeclimate.com/github/tidepool-org/dexcom-stream)
 
+[![browser support](https://ci.testling.com/tidepool-org/dexcom-stream.png)](https://ci.testling.com/tidepool-org/dexcom-stream)
+
+
 ### Usage
 
 ```js
