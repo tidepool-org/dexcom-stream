@@ -59,9 +59,11 @@ dxcomParser = function() {
     return es.pipeline(stream, tr);
   };
 
-  stream.sugars = function( ) {
+  function cbg ( ) {
     return es.pipeline(responder('cbg'), es.map(parse), es.map(valid)); 
-  };
+  }
+  stream.sugars = cbg;
+  stream.cbg = cbg;
 
   stream.responder = responder;
   return stream;
@@ -69,6 +71,10 @@ dxcomParser = function() {
 
 dxcomParser.sugars = function( ) {
   return dxcomParser().sugars( );
+};
+
+dxcomParser.cbg = function( ) {
+  return dxcomParser().cbg( );
 };
 
 dxcomParser.columns = function() {
@@ -99,7 +105,7 @@ function parse (rawData, callback) {
     processedSugar = {
       value: stringReadingToNum(rawData.value),
       type: 'cbg',
-      time: reformatISO(rawData.displayTime),
+      deviceTime: reformatISO(rawData.displayTime),
       special: rawData.value
     };
   }
@@ -107,7 +113,7 @@ function parse (rawData, callback) {
     processedSugar = {
       value: rawData.value,
       type: 'cbg',
-      time: reformatISO(rawData.displayTime)
+      deviceTime: reformatISO(rawData.displayTime)
     }; 
   }
 
@@ -124,7 +130,7 @@ function valid (data, next) {
 function isValidCbg (cbg) {
   if (isNaN(parseInt(cbg.value))) {
     if (cbg.value.match(/lo./i) || cbg.value.match(/hi./i)) {
-      return (cbg.type === 'cbg' && validTime(cbg.time));
+      return (cbg.type === 'cbg' && validTime(cbg.deviceTime));
     }
     else {
       return false;
@@ -132,7 +138,7 @@ function isValidCbg (cbg) {
   }
   else {  
     return (!isNaN(parseInt(cbg.value)) &&
-      cbg.type === 'cbg' && validTime(cbg.time));
+      cbg.type === 'cbg' && validTime(cbg.deviceTime));
   }
 
 };
