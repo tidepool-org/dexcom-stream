@@ -69,7 +69,7 @@ describe("the DxcomParser module", function() {
     });
     it('should return true for cbg with value and valid date', function(done) {
       var DxcomParser = require('../');
-      var cbg = { value: '220', type: 'cbg', time: '2012-12-19T15:18:45+00:00' };
+      var cbg = { value: '220', type: 'cbg', deviceTime: '2012-12-19T15:18:45+00:00' };
 
       DxcomParser.isValidCbg(cbg).should.be.true;
 
@@ -77,7 +77,7 @@ describe("the DxcomParser module", function() {
     });
     it('should return false for no cbg with no value ', function(done) {
       var DxcomParser = require('../');
-      var cbg = { value: '', type: 'cbg', time: '2012-12-19T15:18:45+00:00' };
+      var cbg = { value: '', type: 'cbg', deviceTime: '2012-12-19T15:18:45+00:00' };
 
       DxcomParser.isValidCbg(cbg).should.be.false;
 
@@ -85,7 +85,7 @@ describe("the DxcomParser module", function() {
     });
     it('should return false for no cbg with invald date', function(done) {
       var DxcomParser = require('../');
-      var cbg = { value: '220', type: 'cbg', time: 'not a date' };
+      var cbg = { value: '220', type: 'cbg', deviceTime: 'not a date' };
 
       DxcomParser.isValidCbg(cbg).should.be.false;
 
@@ -93,19 +93,19 @@ describe("the DxcomParser module", function() {
     });
   });
 
-  describe('time',function(){
-    it('should show year 2012, month Dec and day 20 for given raw time of 2012-12-20 04:18:45', function(done) {
+  describe('deviceTime',function(){
+    it('should show year 2012, month Dec and day 20 for given raw deviceTime of 2012-12-20 04:18:45', function(done) {
       var DxcomParser, es, stream, bgTypeStream, toProcess;
 
       DxcomParser = require('../');
       es = require('event-stream');
       toProcess = es.readArray([ '\t\t2012-12-20 12:18:54\t2012-12-20 04:18:45\t220\t2012-12-27 10:04:40\t2012-12-27 02:04:31\t208\t\t\t\t\t' ]);
       
-      stream = toProcess.pipe(DxcomParser.sugars( ));
+      stream = toProcess.pipe(DxcomParser.cbg( ));
 
       es.pipeline(stream, es.writeArray(proof));
       function proof (err, readings) {
-        readings[0].time.should.equal('2012-12-20T04:18:45');
+        readings[0].deviceTime.should.equal('2012-12-20T04:18:45');
         done( );
       }
     });
