@@ -64,9 +64,14 @@ dxcomParser = function() {
   }
   stream.sugars = cbg;
   stream.cbg = cbg;
+  stream.desalinate = cbg;
 
   stream.responder = responder;
   return stream;
+};
+
+dxcomParser.desalinate = function( ) {
+  return dxcomParser().desalinate( );
 };
 
 dxcomParser.sugars = function( ) {
