@@ -101,7 +101,7 @@ describe("the DxcomParser module", function() {
       es = require('event-stream');
       toProcess = es.readArray([ '\t\t2012-12-20 12:18:54\t2012-12-20 04:18:45\t220\t2012-12-27 10:04:40\t2012-12-27 02:04:31\t208\t\t\t\t\t' ]);
       
-      stream = toProcess.pipe(DxcomParser.cbg( ));
+      stream = toProcess.pipe(DxcomParser.desalinate( ));
 
       es.pipeline(stream, es.writeArray(proof));
       function proof (err, readings) {
