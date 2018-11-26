@@ -3,7 +3,8 @@ dexcom-stream
 
 Streaming parser for Dexcom CGM text exports.
 
-** This repo has been deprecated. We now collect data directly from Clarify **
+** This repo has been deprecated. We now collect data directly from Clarity **
+
 ---
 
 ## Install 
